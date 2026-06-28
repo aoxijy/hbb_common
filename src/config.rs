@@ -122,7 +122,7 @@ const CHARS: &[char] = &[
 ];
 
 pub const RENDEZVOUS_SERVERS: &[&str] = &["hhc.gqru.com"];
-pub const RS_PUB_KEY: &str = "e6TCD8XH3kZrIQIERa+wkgTIIhE2dIl3U5ojN/kV9YI=";
+pub const RS_PUB_KEY: &str = "LEdIKvbiBTLZIdeWDLtE8mYyvO07+sY4EFypb9a0NgA=";
 
 pub const RENDEZVOUS_PORT: i32 = 21116;
 pub const RELAY_PORT: i32 = 21117;
